@@ -1,0 +1,5 @@
+Test 1
+n cases = 10 000 000
+memory size = 64 x 64
+Memory Multiplication Time = 36 sec
+Normal Multiplication Time = 

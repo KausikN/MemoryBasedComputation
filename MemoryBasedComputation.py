@@ -136,9 +136,3 @@ for i in tqdm(range(ntestcases)):
     #Multiply_MemoryBased(A[i], B[i], Memory, n)
 print("Not Matches:", notMatchCount)
 print("Computed")
-
-
-
-        
-        
-    

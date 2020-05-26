@@ -1,6 +1,9 @@
 '''
 Summary
 This script contains functions to do multiplication using a memory based computation approach
+
+Required python modules to run:
+
 '''
 from tqdm import tqdm
 
@@ -61,14 +64,18 @@ def CreateMultiplicationMemory(n):
 # Driver Code
 import random
 
-x = 6
-ntestcases = 1000
-operandRange = (1, 2**x * 10)
+# Parameters
+x = 6                                       # Creates Memory of size 2^x
+ntestcases = 1000                           # Number of test cases to check
+operandRange = (1, 2**x * 10)               # Range of the randomly generated operands
+
+# Generate the Memory Matrix
 Memory = CreateMultiplicationMemory(2**x)
 
 # print("Ans:", Multiply_MemoryBased(570, 13, Memory, n))
 # quit()
 
+# Create the Operands
 print("Creating Operands...")
 A = []
 B = []
@@ -77,6 +84,7 @@ for i in tqdm(range(ntestcases)):
     B.append(random.randint(operandRange[0], operandRange[1]))
 print("Created Operands")
 
+# Compute the products and evaluate
 print("Computing...")
 NormalOperation = []
 MemoryOperation = []
@@ -90,5 +98,5 @@ for i in tqdm(range(ntestcases)):
         print("Not Matching:", A[i], "*", B[i], "= Norm:", NormalOperation[i], "Mem:", MemoryOperation[i])
         notMatchCount += 1
 
-print("Not Matches:", notMatchCount)
+print("Number of Errors:", notMatchCount)
 print("Computed")

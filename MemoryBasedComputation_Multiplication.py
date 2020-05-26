@@ -3,7 +3,8 @@ Summary
 This script contains functions to do multiplication using a memory based computation approach
 
 Required python modules to run:
-
+tqdm    -   pip install tqdm
+random  -   pip install random
 '''
 from tqdm import tqdm
 
@@ -13,7 +14,6 @@ def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
 
     modVal = (1 << n) - 1   # This is 2**n - 1      # a & modVal = a % len(Memory)
 
-    #print(a, "-", b)
     # Check for zero
     if a == 0 or b == 0:
         return 0
@@ -26,29 +26,22 @@ def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
     if a <= len(Memory) and b <= len(Memory):   # case = 1
         #print("Case: 1")
         val = Memory[a-1][b-1]
-        #print("1val1:", val)
         return val
 
     elif ((a <= len(Memory) and b > len(Memory)) or (a > len(Memory) and b <= len(Memory))):    # case = 2
         #print("Case: 2")
         x, y = max(a, b), min(a, b)
         val = (Multiply_MemoryBased((x >> n), y, Memory, n) << n)
-        #print("2val1:", val)
         val += Multiply_MemoryBased((x & modVal), y, Memory, n)
-        #print("2val2:", val)
         return val
 
     elif a > len(Memory) and b > len(Memory):   # case = 3
         #print("Case: 3")
         x, y = max(a, b), min(a, b)
         val = (Multiply_MemoryBased((x >> n), (y >> n), Memory, n) << (2*n))
-        #print("3val1:", val)
         val += (Multiply_MemoryBased((x >> n), (y & modVal), Memory, n) << n)
-        #print("3val2:", val)
         val += (Multiply_MemoryBased((y >> n), (x & modVal), Memory, n) << n)
-        #print("3val3:", val)
         val += Multiply_MemoryBased((x & modVal), (y & modVal), Memory, n)
-        #print("3val4:", val)
         return val
 
 def CreateMultiplicationMemory(n):
@@ -71,9 +64,6 @@ operandRange = (1, 2**x * 10)               # Range of the randomly generated op
 
 # Generate the Memory Matrix
 Memory = CreateMultiplicationMemory(2**x)
-
-# print("Ans:", Multiply_MemoryBased(570, 13, Memory, n))
-# quit()
 
 # Create the Operands
 print("Creating Operands...")

@@ -1,90 +1,110 @@
-'''
-Summary
-This library contains functions to create and operate on memory for various operations like multiplication, etc
-'''
+"""
+Functions to create and operate on memory for various operations like multiplication, etc
+"""
 
-# Memory Creation
+# Imports
+
+# Main Functions
+# Memory Creation Functions
 def CreateMemory_CustomOperation(size, CustomOperation, CustomOperationParameters=None):
-    ''' Creates CustomOperation memory of size x size '''
+    '''
+    Creates CustomOperation memory of size x size
+    '''
     Memory = []
     for i in range(size):
         MemRow = []
         for j in range(size):
             MemRow.append(CustomOperation((i+1), (j+1), CustomOperationParameters))
         Memory.append(MemRow)
+        
     return Memory
 
 def CreateMemory_BasicOperation(size, operation):
-    ''' Creates Operation memory of size x size '''
+    '''
+    Creates Operation memory of size x size
+    '''
     operation = operation.lower().strip()
-    if operation in ['add', 'addition', 'a']:
+    if operation in ["add", "addition", "a"]:
         return CreateMemory_Add(size)
-    elif operation in ['multiply', 'mul', 'mult', 'm', 'multiplication']:
+    elif operation in ["multiply", "mul", "mult", "m", "multiplication"]:
         return CreateMemory_Multiply(size)
-    elif operation in ['sub', 'subtract', 's', 'subtraction']:
+    elif operation in ["sub", "subtract", "s", "subtraction"]:
         return CreateMemory_Subtract(size)
-    elif operation in ['div', 'divide', 'd', 'division']:
+    elif operation in ["div", "divide", "d", "division"]:
         return CreateMemory_Divide(size)
 
 def CreateMemory_Multiply(size):
-    ''' Creates multiplication memory of size x size '''
+    '''
+    Creates multiplication memory of size x size
+    '''
     Memory = []
     for i in range(size):
         MemRow = []
         for j in range(size):
             MemRow.append((i+1) * (j+1))
         Memory.append(MemRow)
+
     return Memory
 
 def CreateMemory_Add(size):
-    ''' Creates addition memory of size x size '''
+    '''
+    Creates addition memory of size x size
+    '''
     Memory = []
     for i in range(size):
         MemRow = []
         for j in range(size):
             MemRow.append((i+1) + (j+1))
         Memory.append(MemRow)
+
     return Memory
 
 def CreateMemory_Subtract(size):
-    ''' Creates subtraction memory of size x size '''
+    '''
+    Creates subtraction memory of size x size
+    '''
     Memory = []
     for i in range(size):
         MemRow = []
         for j in range(size):
             MemRow.append((i+1) - (j+1))
         Memory.append(MemRow)
+
     return Memory
 
 def CreateMemory_Divide(size):
-    ''' Creates division memory of size x size '''
+    '''
+    Creates division memory of size x size
+    '''
     Memory = []
     for i in range(size):
         MemRow = []
         for j in range(size):
             MemRow.append((i+1) / (j+1))
         Memory.append(MemRow)
+
     return Memory
 
-# Operations
-def CustomOperation(a, b, CustomOperation, CustomOperationParameters):
-    return CustomOperation(a, b, CustomOperationParameters)
-
+# Operation Functions
 def BasicOperation(a, b, operation):
-    ''' Does specified operation on a and b '''
+    '''
+    Does specified operation on a and b
+    '''
     operation = operation.lower().strip()
-    if operation in ['add', 'addition', 'a']:
+    if operation in ["add", "addition", "a"]:
         return a + b
-    elif operation in ['multiply', 'mul', 'mult', 'm', 'multiplication']:
+    elif operation in ["multiply", "mul", "mult", "m", "multiplication"]:
         return a * b
-    elif operation in ['sub', 'subtract', 's', 'subtraction']:
+    elif operation in ["sub", "subtract", "s", "subtraction"]:
         return a - b
-    elif operation in ['div', 'divide', 'd', 'division']:
+    elif operation in ["div", "divide", "d", "division"]:
         return a / b
 
-# Zero Memory Creation
+# Zero Memory Creation Functions
 def CreateZeroMemory_CustomOperation(size, CustomOperation, CustomOperationParameters=None):
-    ''' Creates CustomOperation memory of size x size '''
+    '''
+    Creates CustomOperation memory of size x size
+    '''
     Memory = []
     MemRow_L = []
     MemRow_R = []
@@ -93,10 +113,13 @@ def CreateZeroMemory_CustomOperation(size, CustomOperation, CustomOperationParam
         MemRow_R.append(CustomOperation(0, (i), CustomOperationParameters))
     Memory.append(MemRow_L)
     Memory.append(MemRow_R)
+
     return Memory
 
 def CreateZeroMemory_BasicOperation(size, operation):
-    ''' Creates Zero Operation memory of size x size '''
+    '''
+    Creates Zero Operation memory of size x size
+    '''
     operation = operation.lower().strip()
     if operation in ['add', 'addition', 'a']:
         return CreateZeroMemory_Add(size)
@@ -108,7 +131,9 @@ def CreateZeroMemory_BasicOperation(size, operation):
         return CreateZeroMemory_Divide(size)
 
 def CreateZeroMemory_Multiply(size):
-    ''' Creates multiplication Zero memory of size x size '''
+    '''
+    Creates multiplication Zero memory of size x size
+    '''
     Memory = []
     MemRow_L = []
     MemRow_R = []
@@ -117,10 +142,13 @@ def CreateZeroMemory_Multiply(size):
         MemRow_R.append(0)
     Memory.append(MemRow_L)
     Memory.append(MemRow_R)
+
     return Memory
 
 def CreateZeroMemory_Add(size):
-    ''' Creates addition Zero memory of size x size '''
+    '''
+    Creates addition Zero memory of size x size
+    '''
     Memory = []
     MemRow_L = []
     MemRow_R = []
@@ -129,10 +157,13 @@ def CreateZeroMemory_Add(size):
         MemRow_R.append(i)
     Memory.append(MemRow_L)
     Memory.append(MemRow_R)
+
     return Memory
 
 def CreateZeroMemory_Subtract(size):
-    ''' Creates subtraction Zero memory of size x size '''
+    '''
+    Creates subtraction Zero memory of size x size
+    '''
     Memory = []
     MemRow_L = []
     MemRow_R = []
@@ -141,10 +172,13 @@ def CreateZeroMemory_Subtract(size):
         MemRow_R.append(-(i))
     Memory.append(MemRow_L)
     Memory.append(MemRow_R)
+
     return Memory
 
 def CreateZeroMemory_Divide(size):
-    ''' Creates division Zero memory of size x size '''
+    '''
+    Creates division Zero memory of size x size
+    '''
     Memory = []
     MemRow_L = []
     MemRow_R = []
@@ -153,4 +187,5 @@ def CreateZeroMemory_Divide(size):
         MemRow_R.append(0)
     Memory.append(MemRow_L)
     Memory.append(MemRow_R)
+
     return Memory

@@ -1,25 +1,32 @@
-'''
-Summary
-This script contains functions to do multiplication using a memory based computation approach
+"""
+Functions to do multiplication using a memory based computation approach
+"""
 
-Required python modules to run:
-tqdm    -   pip install tqdm
-random  -   pip install random
-'''
+# Imports
+import random
 from tqdm import tqdm
 
+# Main Functions
 # Utils Functions
 def AddTimes(t1, t2):
+    '''
+    Adds two time dictionaries
+    '''
     t_a = {}
     for k in t1.keys():
         t_a[k] = t1[k] + t2[k]
+    
     return t_a
 
-# Operation Methods
-def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
-    ''' Multiplication Operation using memory method '''
+# Operation Functions
+def Multiply_MemoryBased(a, b, Memory, N):
+    '''
+    Multiplication Operation using memory method
 
-    modVal = (1 << n) - 1   # This is 2**n - 1      # a & modVal = a % len(Memory)
+    Memory must have size 2^N x 2^N
+    '''
+    # Init
+    modVal = (1 << N) - 1   # This is 2**N - 1      # a & modVal = a % len(Memory)
     time = {
         "comp": 0,
         "multiplexer": 0,
@@ -28,7 +35,6 @@ def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
         "shift": 0,
         "mask": 0
     }
-
     # # Check for zero
     # if a == 0 or b == 0:
     #     return 0, time
@@ -36,7 +42,6 @@ def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
     #     return b, time
     # elif b == 1:
     #     return a, time
-
     # Time for check case
     ## 2 parallell comparisons (a > len(Memory), b > len(Memory)) (1 comparison delay)
     ## Multiplexer to activate that particular case - 1 multiplexer delay
@@ -46,19 +51,15 @@ def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
     if a <= len(Memory) and b <= len(Memory):   # case = 1
         #print("Case: 1")
         val = Memory[a-1][b-1]
-
         # Time for Case 1
         time["memory"] += 1
-        return val, time
-
     elif ((a <= len(Memory) and b > len(Memory)) or (a > len(Memory) and b <= len(Memory))):    # case = 2
         #print("Case: 2")
         x, y = max(a, b), min(a, b)
-        term1, time1 = Multiply_MemoryBased((x >> n), y, Memory, n)
-        term1 = (term1 << n)
-        term2, time2 = Multiply_MemoryBased((x & modVal), y, Memory, n) # Remainder
+        term1, time1 = Multiply_MemoryBased((x >> N), y, Memory, N)
+        term1 = (term1 << N)
+        term2, time2 = Multiply_MemoryBased((x & modVal), y, Memory, N) # Remainder
         val = term1 + term2
-
         # Time for Case 2
         ## k time
         time = AddTimes(time, time1)
@@ -70,20 +71,17 @@ def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
         time["mask"] += 1
         ## Add time
         time["add"] += 1
-        return val, time
-
     elif a > len(Memory) and b > len(Memory):   # case = 3
         #print("Case: 3")
         x, y = max(a, b), min(a, b)
-        term1, time1 = Multiply_MemoryBased((x >> n), (y >> n), Memory, n)
-        term1 = (term1 << (2*n))
-        term2, time2 = Multiply_MemoryBased((x >> n), (y & modVal), Memory, n)
-        term2 = (term2 << n)
-        term3, time3 = Multiply_MemoryBased((y >> n), (x & modVal), Memory, n)
-        term3 = (term3 << n)
-        term4, time4 = Multiply_MemoryBased((x & modVal), (y & modVal), Memory, n) # Remainder
+        term1, time1 = Multiply_MemoryBased((x >> N), (y >> N), Memory, N)
+        term1 = (term1 << (2*N))
+        term2, time2 = Multiply_MemoryBased((x >> N), (y & modVal), Memory, N)
+        term2 = (term2 << N)
+        term3, time3 = Multiply_MemoryBased((y >> N), (x & modVal), Memory, N)
+        term3 = (term3 << N)
+        term4, time4 = Multiply_MemoryBased((x & modVal), (y & modVal), Memory, N) # Remainder
         val = term1 + term2 + term3 + term4
-
         # Time for Case 2
         ## Term 1
         time = AddTimes(time, time1)
@@ -99,16 +97,20 @@ def Multiply_MemoryBased(a, b, Memory, n): # Memory must have size 2^n x 2^n
         time["mask"] += 2
         ## Add time
         time["add"] += 3
-        return val, time
+        
+    return val, time
 
-def CreateMultiplicationMemory(n):
-    ''' Creates Multiplication Memory Matrix of size n*n '''
+def CreateMultiplicationMemory(N):
+    '''
+    Creates Multiplication Memory Matrix of size N*N
+    '''
     matrix = []
-    for i in range(n):
+    for i in range(N):
         row = []
-        for j in range(n):
+        for j in range(N):
             row.append((i+1)*(j+1))
         matrix.append(row)
+
     return matrix
 
 ########################################################################################################################
@@ -127,10 +129,8 @@ print()
 print(Time)
 
 ########################################################################################################################
-# # Driver Code
-# import random
-
-# # Parameters
+# # RunCode
+# # Params
 # x = 6                                       # Creates Memory of size 2^x
 # ntestcases = 1000                           # Number of test cases to check
 # operandRange = (1, 2**x * 10)               # Range of the randomly generated operands

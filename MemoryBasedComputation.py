@@ -9,7 +9,7 @@ from tqdm import tqdm
 from Library.MemoryLibrary import *
 
 # Main Functions
-# Operation Functions
+# Compute Functions
 def MemoryBasedCompute_Multiply(A, B, Memory, N):
     '''
     Multiplication Operation using Memory Method
@@ -17,9 +17,9 @@ def MemoryBasedCompute_Multiply(A, B, Memory, N):
     Memory must have size (2^N, 2^N)
     '''
     # Init
-    len_M = Memory.shape[0]
+    len_M = Memory.shape[0] - 1
     modVal = (1 << N) - 1 # This is (2**N-1) used for (A & modVal) = (A % len_M)
-    # print(a, "-", b)
+    # print(" - ", A, B, len_M)
     # Check Base Cases
     if A == 0 or B == 0:
         return 0
@@ -31,7 +31,7 @@ def MemoryBasedCompute_Multiply(A, B, Memory, N):
     # Case A
     if A <= len_M and B <= len_M:
         # print("Case: A")
-        val = Memory[A, B]
+        val = int(Memory[A, B])
         # print("Aval1:", val)
     # Case B
     elif ((A <= len_M and B > len_M) or (A > len_M and B <= len_M)):
@@ -55,3 +55,11 @@ def MemoryBasedCompute_Multiply(A, B, Memory, N):
         # print("Cval4:", val)
 
     return val
+
+# Main Vars
+COMPUTERS = {
+    "Multiply": {
+        "compute": MemoryBasedCompute_Multiply,
+        "operation": OPERATIONS["Multiply"]
+    }
+}

@@ -13,9 +13,9 @@ def CreateMemory_CustomOperation(N, operation):
     '''
     Creates CustomOperation (N, N) Memory
     '''
-    Memory = np.zeros((N+1, N+1), dtype=float)
-    for i in range(N):
-        for j in range(N):
-            Memory[i, j] = operation((i+1), (j+1))
+    Memory = np.zeros((N+1, N+1), dtype=int)
+    for i in range(Memory.shape[0]):
+        for j in range(Memory.shape[1]):
+            Memory[i, j] = operation(i, j)
         
     return Memory

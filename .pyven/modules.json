@@ -1,0 +1,118 @@
+{
+    "name": "MemoryBasedComputation",
+    "repoLink": "https://github.com/KausikN/MemoryBasedComputation",
+    "localPath": "E:/Github Codes and Projects/Projects/MemoryBasedComputation",
+    "modules": {
+        "app.py": {
+            "name": "app",
+            "type": "local",
+            "link": "https://github.com/KausikN/MemoryBasedComputation/blob/master/app.py",
+            "parentDir": "E:/Github Codes and Projects/Projects/MemoryBasedComputation",
+            "subDir": "",
+            "dependencies": [
+                "os.py",
+                "json.py",
+                "time.py",
+                "streamlit.py",
+                "*.py"
+            ]
+        },
+        "MemoryBasedComputation.py": {
+            "name": "MemoryBasedComputation",
+            "type": "local",
+            "link": "https://github.com/KausikN/MemoryBasedComputation/blob/master/MemoryBasedComputation.py",
+            "parentDir": "E:/Github Codes and Projects/Projects/MemoryBasedComputation",
+            "subDir": "",
+            "dependencies": [
+                "random.py",
+                "tqdm.py",
+                "*.py"
+            ]
+        },
+        "Library/MemoryLibrary.py": {
+            "name": "MemoryLibrary",
+            "type": "local",
+            "link": "https://github.com/KausikN/MemoryBasedComputation/blob/master/Library/MemoryLibrary.py",
+            "parentDir": "E:/Github Codes and Projects/Projects/MemoryBasedComputation",
+            "subDir": "Library",
+            "dependencies": [
+                "numpy.py",
+                "*.py"
+            ]
+        },
+        "Library/OperationLibrary.py": {
+            "name": "OperationLibrary",
+            "type": "local",
+            "link": "https://github.com/KausikN/MemoryBasedComputation/blob/master/Library/OperationLibrary.py",
+            "parentDir": "E:/Github Codes and Projects/Projects/MemoryBasedComputation",
+            "subDir": "Library",
+            "dependencies": [
+                "numpy.py"
+            ]
+        },
+        "random.py": {
+            "name": "random",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        },
+        "tqdm.py": {
+            "name": "tqdm",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        },
+        "json.py": {
+            "name": "json",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        },
+        "time.py": {
+            "name": "time",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        },
+        "numpy.py": {
+            "name": "numpy",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        },
+        "streamlit.py": {
+            "name": "streamlit",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        },
+        "*.py": {
+            "name": "*",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        },
+        "os.py": {
+            "name": "os",
+            "type": "missing",
+            "link": "",
+            "parentDir": "",
+            "subDir": "",
+            "dependencies": []
+        }
+    }
+}
